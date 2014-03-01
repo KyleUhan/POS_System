@@ -5,6 +5,8 @@
  */
 package pos_system;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Kyle
@@ -24,22 +26,28 @@ public class BuyInBulkDiscount implements DiscountStrategy {
 
     @Override
     public double getAdjustedTotal() {
+        
+        
 
         double adjustedTotal = (getItemCost() * getQuantity());
 
         if (getQuantity() >= getMinBulkAmount()) {
             adjustedTotal = getItemCost() * getQuantity() - getAmountSaved();
         }
+        
+        new DecimalFormat("##.##").format(adjustedTotal);
         return adjustedTotal;
     }
 
     @Override
     public double getAmountSaved() {
+
         double savedAmnt = 0;
 
         if (getQuantity() >= getMinBulkAmount()) {
             savedAmnt = getItemCost() * getQuantity() * getDiscountPercent();
         }
+        new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
 
     }

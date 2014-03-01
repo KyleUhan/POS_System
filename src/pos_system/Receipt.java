@@ -1,6 +1,7 @@
 package pos_system;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,21 +26,25 @@ public class Receipt implements ReceiptStrategy {
 
     @Override
     public void getReceiptForItems(MerchandiseScannerStrategy mss) {
+        double overAllTotal = 0;
         int i = 0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("Store Receipt\n" + getStoreInfo() + "\n" + dateFormat.format(date)
-                + "\n------------------------------------------------");
+                + "\n------------------------------------------------------------------------------------");
         System.out.println("ID  ----   Product   ----   Price  ----  Quantity  ---- "
                 + "Sale Amount  ----  Total\n"
-                + "------------------------------------------------");
+                + "------------------------------------------------------------------------------------");
         //will have loop of line items here
         populateReceipt(mss);
         for (LineItem eachLine1 : eachLine) {
             System.out.println("000-" + mss.getMerchandiseNumberArray()[i]
                     + "      " + eachLine1.getItem());
+            overAllTotal += eachLine1.getTotal();
             i++;
+            
         }
+        System.out.println("TOTAL: " +  new DecimalFormat("##.##").format(overAllTotal));
 
     }
 

@@ -18,6 +18,7 @@ public class RealDatabaseRetrieval implements RecordStorageStrategy{
         System.out.println("Unable to Access DB at this time");
 
     }
+  
     
     @Override
     public final double getProductPrice(int merchandiseNumber){

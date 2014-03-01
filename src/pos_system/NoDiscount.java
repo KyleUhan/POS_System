@@ -22,6 +22,7 @@ public class NoDiscount implements DiscountStrategy {
 
     @Override
     public double getAmountSaved() {
+
         double savedAmnt = 0;
 
         return savedAmnt;
@@ -29,10 +30,12 @@ public class NoDiscount implements DiscountStrategy {
     }
 
     //Getters and Setters
+    @Override
     public final void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
+    @Override
     public final void setItemCost(double itemCost) {
         this.itemCost = itemCost;
     }

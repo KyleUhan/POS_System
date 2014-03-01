@@ -5,6 +5,8 @@
  */
 package pos_system;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Kyle
@@ -23,18 +25,26 @@ public class PercentDiscount implements DiscountStrategy {
 
     @Override
     public double getAdjustedTotal() {
+
         double adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
+        new DecimalFormat("##.##").format(adjustedTotal);
+        
         return adjustedTotal;
     }
 
     //ADDRESS MAGIC NUMBER
     @Override
     public double getAmountSaved() {
+
         double savedAmnt = getItemCost() * getQuantity() * getPercentAmount();
+        
+ 
+        new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
     }
 
     //Getters and Setters
+    @Override
     public final void setQuantity(double quantity) {
         this.quantity = quantity;
     }
@@ -43,6 +53,7 @@ public class PercentDiscount implements DiscountStrategy {
         this.percentAmount = percentAmount / CONVER_TO_PERCENT;
     }
 
+    @Override
     public final void setItemCost(double itemCost) {
         this.itemCost = itemCost;
     }

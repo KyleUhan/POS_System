@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
 
 /**
@@ -22,17 +17,18 @@ public class FakeDatabaseRetrieval implements RecordStorageStrategy {
     private final double[] storeItemPrice = {55.95, 3.99, 34.55, 28.99, 4.99, 19.99,
         15.35, 19.99, 22.99, 105.95, 78.50, 26.99,
         13.99, 12.35, 19.05, 75.00, 55.60, 78.45, 14.99};
-    private final int[] productDiscountType = {1,3,2,3,0,0,1,1,2,2,0,3,1,3,3,3,0,0,1};
-    
+    private final int[] productDiscountType = {1, 3, 2, 3, 0, 0, 1, 1, 2, 2, 0, 3, 1, 3, 3, 3, 0, 0, 1};
 
     @Override
     public final void getStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition) {
+        
         setProduct(new Product());
         getProduct().setProductInfo(getStoreItemNames(mss.getMerchandiseNumberArray()[scannedPosition]));
         getProduct().setProductPrice(getProductPrice(mss.getMerchandiseNumberArray()[scannedPosition]));
-        System.out.println(getProduct().applyDiscount(getProductDiscountType()[scannedPosition], mss, scannedPosition));
+        getProduct().applyDiscount(getProductDiscountType()[scannedPosition], mss, scannedPosition);
+        
     }
-
+    
     @Override
     public final double getProductPrice(int merchandiseNumber) {
         return storeItemPrice[merchandiseNumber];
@@ -64,5 +60,4 @@ public class FakeDatabaseRetrieval implements RecordStorageStrategy {
         return productDiscountType;
     }
 
-    
 }

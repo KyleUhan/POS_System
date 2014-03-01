@@ -5,6 +5,8 @@
  */
 package pos_system;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Kyle
@@ -19,7 +21,6 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
 //        setQuantity(quantity);
 //        setItemCost(itemCost);
 //    }
-
     @Override
     public double getAdjustedTotal() {
 
@@ -28,13 +29,13 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
         if (getQuantity() >= 3) {
             adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
         }
-        
+        new DecimalFormat("##.##").format(adjustedTotal);
         return adjustedTotal;
     }
 
-    //ADDRESS MAGIC NUMBER
     @Override
     public double getAmountSaved() {
+
         double savedAmnt = 0;
 
         if (getQuantity() >= MIN_NEEDED) {
@@ -42,15 +43,17 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
             salesApplied = (int) (getQuantity() / MIN_NEEDED);
             savedAmnt = salesApplied * getItemCost();
         }
-
+        new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
     }
 
     //Getters and Setters
+    @Override
     public final void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
+    @Override
     public final void setItemCost(double itemCost) {
         this.itemCost = itemCost;
     }
@@ -62,12 +65,5 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     public double getItemCost() {
         return itemCost;
     }
-
-    //Testing code
-//    public static void main(String[] args) {
-//        DiscountStrategy ds = new BuyTwoGetOneFreeDiscount(10.00, 13);
-//        System.out.println("Amn saved: " + ds.getAmountSaved());
-//        System.out.println("New total: " + ds.getAdjustedTotal());
-//    }
 
 }

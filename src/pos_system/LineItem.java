@@ -7,7 +7,7 @@ package pos_system;
 public class LineItem {
 
     private RecordStorageStrategy rst;
-    private String item;
+    private String entireLineItem;
     private String discountInfo;
     private double total;
     private static int SCAN_ARRAY_POSITION = 0;
@@ -21,11 +21,11 @@ public class LineItem {
     }
 
     public String getItem() {
-        return item;
+        return entireLineItem;
     }
 
     public void setItem(String item) {
-        this.item = item;
+        this.entireLineItem = item;
     }
 
     public void setRst(RecordStorageStrategy rst) {
@@ -48,6 +48,7 @@ public class LineItem {
                 + mss.getMerchandiseQuantityArray()[SCAN_ARRAY_POSITION - 1] + "           "
                 + getRst().getProduct().getAmountSaved() + "          "
                 + getRst().getProduct().getAdjustedTotal());
+
         setTotal(getRst().getProduct().getAdjustedTotal());
 
     }
@@ -59,7 +60,5 @@ public class LineItem {
     public void setTotal(double total) {
         this.total = total;
     }
-    
-    
 
 }

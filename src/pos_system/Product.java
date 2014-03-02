@@ -5,9 +5,6 @@
  */
 package pos_system;
 
-
-
-
 /**
  *
  * @author Kyle
@@ -15,14 +12,13 @@ package pos_system;
 public class Product {
 
     private DiscountStrategy discountStrategy;
-    private DiscountStrategy[] discountType = {new NoDiscount(), 
+    private DiscountStrategy[] discountType = {new NoDiscount(),
         new BuyInBulkDiscount(), new BuyTwoGetOneFreeDiscount(), new PercentDiscount()};
     private String productInfo;
     private double productPrice;
-    
+
     private double amountSaved;
     private double adjustedTotal;
-    
 
     public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
         double amntSaved;
@@ -34,8 +30,6 @@ public class Product {
         newTotal = getDiscountStrategy().getAdjustedTotal();
         setAmountSaved(amntSaved);
         setAdjustedTotal(newTotal);
-//        System.out.println(amntSaved);
-//        System.out.println(newTotal);
 
     }
 
@@ -87,11 +81,5 @@ public class Product {
     public void setAdjustedTotal(double adjustedTotal) {
         this.adjustedTotal = adjustedTotal;
     }
-    
-    
-    
-    
-    
-    
 
 }

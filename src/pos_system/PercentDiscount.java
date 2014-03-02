@@ -12,23 +12,18 @@ import java.text.DecimalFormat;
  * @author Kyle
  */
 public class PercentDiscount implements DiscountStrategy {
+
     private final int CONVER_TO_PERCENT = 100;
     private double quantity;
     private double percentAmount;
     private double itemCost;
-
-//    public PercentDiscount(double itemCost, double quantity, double percentAmount) {
-//        setQuantity(quantity);
-//        setItemCost(itemCost);
-//        setPercentAmount(percentAmount);
-//    }
 
     @Override
     public double getAdjustedTotal() {
 
         double adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
         new DecimalFormat("##.##").format(adjustedTotal);
-        
+
         return adjustedTotal;
     }
 
@@ -37,8 +32,7 @@ public class PercentDiscount implements DiscountStrategy {
     public double getAmountSaved() {
 
         double savedAmnt = getItemCost() * getQuantity() * getPercentAmount();
-        
- 
+
         new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
     }
@@ -69,12 +63,5 @@ public class PercentDiscount implements DiscountStrategy {
     public double getItemCost() {
         return itemCost;
     }
-
-    //Testing code
-//    public static void main(String[] args) {
-//        DiscountStrategy ds = new PercentDiscount(10.00, 1, 10);
-//        System.out.println("Amn saved: " + ds.getAmountSaved());
-//        System.out.println("New total: " + ds.getAdjustedTotal());
-//    }
 
 }

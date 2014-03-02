@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
 
 import java.text.DecimalFormat;
@@ -17,10 +12,6 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     private double quantity;
     private double itemCost;
 
-//    public BuyTwoGetOneFreeDiscount(double itemCost, double quantity) {
-//        setQuantity(quantity);
-//        setItemCost(itemCost);
-//    }
     @Override
     public double getAdjustedTotal() {
 

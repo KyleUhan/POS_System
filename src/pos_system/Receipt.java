@@ -42,9 +42,9 @@ public class Receipt implements ReceiptStrategy {
                     + "      " + eachLine1.getItem());
             overAllTotal += eachLine1.getTotal();
             i++;
-            
+
         }
-        System.out.println("TOTAL: " +  new DecimalFormat("##.##").format(overAllTotal));
+        System.out.println("TOTAL: " + new DecimalFormat("##.##").format(overAllTotal));
 
     }
 

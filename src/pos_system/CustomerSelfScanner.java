@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
 
 import java.util.Scanner;
@@ -12,6 +7,7 @@ import java.util.Scanner;
  * @author Kyle
  */
 public class CustomerSelfScanner implements MerchandiseScannerStrategy {
+
     private final int EXIT_VAL = 999;
     private final String ERROR = "Item ID Number must not exceed 18";
 

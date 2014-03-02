@@ -14,27 +14,19 @@ import java.text.DecimalFormat;
 public class BuyInBulkDiscount implements DiscountStrategy {
 
     private double discountPercent = .1;
-    private double quantity;
     private double minBulkAmount = 5;
+    private double quantity;
     private double itemCost;
-
-//    public BuyInBulkDiscount(double itemCost, double quantity, double minBulkAmount) {
-//        setQuantity(quantity);
-//        setItemCost(itemCost);
-//        setMinBulkAmount(minBulkAmount);
-//    }
 
     @Override
     public double getAdjustedTotal() {
-        
-        
 
         double adjustedTotal = (getItemCost() * getQuantity());
 
         if (getQuantity() >= getMinBulkAmount()) {
             adjustedTotal = getItemCost() * getQuantity() - getAmountSaved();
         }
-        
+
         new DecimalFormat("##.##").format(adjustedTotal);
         return adjustedTotal;
     }
@@ -86,12 +78,5 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     public double getDiscountPercent() {
         return discountPercent;
     }
-
-    //Testing code
-//    public static void main(String[] args) {
-//        DiscountStrategy ds = new BuyInBulkDiscount(10.00, 3, 4);
-//        System.out.println("Amn saved: " + ds.getAmountSaved());
-//        System.out.println("New total: " + ds.getAdjustedTotal());
-//    }
 
 }

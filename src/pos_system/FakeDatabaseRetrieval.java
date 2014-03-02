@@ -21,14 +21,14 @@ public class FakeDatabaseRetrieval implements RecordStorageStrategy {
 
     @Override
     public final void getStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition) {
-        
+
         setProduct(new Product());
         getProduct().setProductInfo(getStoreItemNames(mss.getMerchandiseNumberArray()[scannedPosition]));
         getProduct().setProductPrice(getProductPrice(mss.getMerchandiseNumberArray()[scannedPosition]));
         getProduct().applyDiscount(getProductDiscountType()[scannedPosition], mss, scannedPosition);
-        
+
     }
-    
+
     @Override
     public final double getProductPrice(int merchandiseNumber) {
         return storeItemPrice[merchandiseNumber];

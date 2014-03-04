@@ -20,7 +20,6 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
         if (getQuantity() >= 3) {
             adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
         }
-        new DecimalFormat("##.##").format(adjustedTotal);
         return adjustedTotal;
     }
 
@@ -34,7 +33,6 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
             salesApplied = (int) (getQuantity() / MIN_NEEDED);
             savedAmnt = salesApplied * getItemCost();
         }
-        new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
     }
 

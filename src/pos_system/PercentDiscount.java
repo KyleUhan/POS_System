@@ -22,7 +22,6 @@ public class PercentDiscount implements DiscountStrategy {
     public double getAdjustedTotal() {
 
         double adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
-        new DecimalFormat("##.##").format(adjustedTotal);
 
         return adjustedTotal;
     }
@@ -33,7 +32,6 @@ public class PercentDiscount implements DiscountStrategy {
 
         double savedAmnt = getItemCost() * getQuantity() * getPercentAmount();
 
-        new DecimalFormat("##.##").format(savedAmnt);
         return savedAmnt;
     }
 

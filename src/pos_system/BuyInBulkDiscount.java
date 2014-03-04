@@ -27,7 +27,6 @@ public class BuyInBulkDiscount implements DiscountStrategy {
             adjustedTotal = getItemCost() * getQuantity() - getAmountSaved();
         }
 
-        new DecimalFormat("##.##").format(adjustedTotal);
         return adjustedTotal;
     }
 
@@ -39,7 +38,7 @@ public class BuyInBulkDiscount implements DiscountStrategy {
         if (getQuantity() >= getMinBulkAmount()) {
             savedAmnt = getItemCost() * getQuantity() * getDiscountPercent();
         }
-        new DecimalFormat("##.##").format(savedAmnt);
+
         return savedAmnt;
 
     }

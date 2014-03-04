@@ -1,23 +1,19 @@
 package pos_system;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Kyle
  */
 public class LineItem {
 
-    private RecordStorageStrategy rst;
+    private RecordStorageStrategy rss;
     private String entireLineItem;
-    private String discountInfo;
     private double total;
-    private static int SCAN_ARRAY_POSITION = 0;
 
-    public LineItem() {
-        SCAN_ARRAY_POSITION++;
-    }
-
-    public RecordStorageStrategy getRst() {
-        return rst;
+    public RecordStorageStrategy getRss() {
+        return rss;
     }
 
     public String getItem() {
@@ -28,28 +24,21 @@ public class LineItem {
         this.entireLineItem = item;
     }
 
-    public void setRst(RecordStorageStrategy rst) {
-        this.rst = rst;
+    public void setRss(RecordStorageStrategy rss) {
+        this.rss = rss;
     }
 
-    public String getDiscountInfo() {
-        return discountInfo;
-    }
+    
+     //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
+    public void setItem(MerchandiseScannerStrategy mss, int arrayPosition) {
+        getRss().getStoreProduct(mss, (arrayPosition));
+        setItem(getRss().getProduct().getProductInfo() + " "
+                + getRss().getProduct().getProductPrice() + "           "
+                + mss.getMerchandiseQuantityArray()[arrayPosition] + "           "
+                + new DecimalFormat("####.##").format(getRss().getProduct().getAmountSaved()) + "          "
+                + new DecimalFormat("####.##").format(getRss().getProduct().getAdjustedTotal()));
 
-    public void setDiscountInfo(String discountInfo) {
-        this.discountInfo = discountInfo;
-    }
-
-    public void setItem(MerchandiseScannerStrategy mss) {
-        setRst(new FakeDatabaseRetrieval());
-        getRst().getStoreProduct(mss, (SCAN_ARRAY_POSITION - 1));
-        setItem(getRst().getProduct().getProductInfo() + " "
-                + getRst().getProduct().getProductPrice() + "           "
-                + mss.getMerchandiseQuantityArray()[SCAN_ARRAY_POSITION - 1] + "           "
-                + getRst().getProduct().getAmountSaved() + "          "
-                + getRst().getProduct().getAdjustedTotal());
-
-        setTotal(getRst().getProduct().getAdjustedTotal());
+        setTotal(getRss().getProduct().getAdjustedTotal());
 
     }
 

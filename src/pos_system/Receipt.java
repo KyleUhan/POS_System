@@ -22,8 +22,8 @@ public class Receipt implements ReceiptStrategy {
 
         for (int i = 0; i < mss.getTotalAmountOfScannedProducts(); i++) {
             eachLine[i] = new LineItem();
-            eachLine[i].setRst(rss);
-            eachLine[i].setItem(mss);
+            eachLine[i].setRss(rss);
+            eachLine[i].setItem(mss, i);
         }
     }
 
@@ -31,7 +31,7 @@ public class Receipt implements ReceiptStrategy {
     public void showReceiptForItems(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
         double overAllTotal = 0;
         int i = 0;
-        //TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY
+        //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("Store Receipt\n" + getStoreInfo() + "\n" + dateFormat.format(date)

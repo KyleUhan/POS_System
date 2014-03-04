@@ -14,20 +14,24 @@ public class Receipt implements ReceiptStrategy {
     private String storeInfo = "Krohls Department Store";
     private LineItem[] eachLine;
 
+ 
+    
     @Override
-    public void populateReceipt(MerchandiseScannerStrategy mss) {
+    public void populateReceipt(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
         eachLine = new LineItem[mss.getTotalAmountOfScannedProducts()];
 
         for (int i = 0; i < mss.getTotalAmountOfScannedProducts(); i++) {
             eachLine[i] = new LineItem();
+            eachLine[i].setRst(rss);
             eachLine[i].setItem(mss);
         }
     }
 
     @Override
-    public void getReceiptForItems(MerchandiseScannerStrategy mss) {
+    public void showReceiptForItems(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
         double overAllTotal = 0;
         int i = 0;
+        //TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("Store Receipt\n" + getStoreInfo() + "\n" + dateFormat.format(date)
@@ -35,20 +39,21 @@ public class Receipt implements ReceiptStrategy {
         System.out.println("ID  ----   Product   ----   Price  ----  Quantity  ---- "
                 + "Sale Amount  ----  Total\n"
                 + "------------------------------------------------------------------------------------");
-        //will have loop of line items here
-        populateReceipt(mss);
+
+        populateReceipt(mss, rss);
+        
         for (LineItem eachLine1 : eachLine) {
             System.out.println("000-" + mss.getMerchandiseNumberArray()[i]
                     + "      " + eachLine1.getItem());
             overAllTotal += eachLine1.getTotal();
             i++;
-
         }
-        System.out.println("TOTAL: " + new DecimalFormat("##.##").format(overAllTotal));
+        System.out.println("\nTOTAL: " + new DecimalFormat("##.##").format(overAllTotal));
 
     }
 
-    public void setStoreInfo(String storeInfo) {
+    //Getters and Setters
+    public void setStoreInfo(final String storeInfo) {
         this.storeInfo = storeInfo;
     }
 
@@ -56,7 +61,7 @@ public class Receipt implements ReceiptStrategy {
         return eachLine;
     }
 
-    public void setEachLine(LineItem[] eachLine) {
+    public void setEachLine(final LineItem[] eachLine) {
         this.eachLine = eachLine;
     }
 

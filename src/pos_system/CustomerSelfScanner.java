@@ -16,7 +16,6 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
 
     @Override
     public void scanItem() {
-
         int merchNumber;
         double Qtny;
         merchandiseNumberArray = new int[1];

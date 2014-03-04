@@ -11,8 +11,10 @@ package pos_system;
  */
 public interface ReceiptStrategy {
 
-    public abstract void getReceiptForItems(MerchandiseScannerStrategy mss);
+    public abstract void showReceiptForItems(MerchandiseScannerStrategy mss, RecordStorageStrategy rss);
 
-    public abstract void populateReceipt(MerchandiseScannerStrategy mss);
+    public abstract void populateReceipt(MerchandiseScannerStrategy mss, RecordStorageStrategy rss);
+    
+    ;
 
 }

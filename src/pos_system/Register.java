@@ -17,20 +17,20 @@ public class Register {
         System.out.println(ACTIVATED_REGISTER);
     }
 
-    public final void startNewSale(final MerchandiseScannerStrategy mss) {
+    public final void startNewSale(final MerchandiseScannerStrategy mss, final ReceiptStrategy rs, RecordStorageStrategy rss) {
         setMerchandiseScanner(mss);
         getMerchandiseScanner().scanItem();
-        completeTransaction();
+        setReceipt(rs);
+        completeTransaction(rss);
     }
 
     //Pass scanned item values to Output Strategy
-    public final void completeTransaction() {
-        setReceipt(new Receipt());
-        getReceipt().getReceiptForItems(getMerchandiseScanner());
+    public final void completeTransaction(RecordStorageStrategy rss) {
+        getReceipt().showReceiptForItems(getMerchandiseScanner(), rss);
     }
 
     //Getters and Setters
-    public void setReceipt(final Receipt receipt) {
+    public void setReceipt(final ReceiptStrategy receipt) {
         this.receipt = receipt;
     }
 

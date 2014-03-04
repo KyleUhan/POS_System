@@ -14,52 +14,32 @@ import java.text.DecimalFormat;
 public class PercentDiscount implements DiscountStrategy {
 
     private final int CONVER_TO_PERCENT = 100;
-    private double quantity;
     private double percentAmount;
-    private double itemCost;
 
     @Override
-    public double getAdjustedTotal() {
+    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
 
-        double adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
+        double adjustedTotal = (itemCost * quantity) - getAmountSaved(itemCost, quantity);
 
         return adjustedTotal;
     }
 
     //ADDRESS MAGIC NUMBER
     @Override
-    public double getAmountSaved() {
+    public double getAmountSaved(double itemCost, double quantity) {
 
-        double savedAmnt = getItemCost() * getQuantity() * getPercentAmount();
+        double savedAmnt = itemCost * quantity * getPercentAmount();
 
         return savedAmnt;
     }
 
     //Getters and Setters
-    @Override
-    public final void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
     public final void setPercentAmount(double percentAmount) {
         this.percentAmount = percentAmount / CONVER_TO_PERCENT;
     }
 
-    @Override
-    public final void setItemCost(double itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
     public double getPercentAmount() {
         return percentAmount;
-    }
-
-    public double getItemCost() {
-        return itemCost;
     }
 
 }

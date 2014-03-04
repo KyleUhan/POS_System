@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pos_system;
 
-import java.text.DecimalFormat;
 
 /**
  *
@@ -15,28 +10,26 @@ public class BuyInBulkDiscount implements DiscountStrategy {
 
     private double discountPercent = .1;
     private double minBulkAmount = 5;
-    private double quantity;
-    private double itemCost;
 
     @Override
-    public double getAdjustedTotal() {
+    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
 
-        double adjustedTotal = (getItemCost() * getQuantity());
+        double adjustedTotal = (itemCost * quantity);
 
-        if (getQuantity() >= getMinBulkAmount()) {
-            adjustedTotal = getItemCost() * getQuantity() - getAmountSaved();
+        if (quantity >= getMinBulkAmount()) {
+            adjustedTotal = itemCost * quantity - getAmountSaved(itemCost, quantity);
         }
 
         return adjustedTotal;
     }
 
     @Override
-    public double getAmountSaved() {
+    public double getAmountSaved(double itemCost, double quantity) {
 
         double savedAmnt = 0;
 
-        if (getQuantity() >= getMinBulkAmount()) {
-            savedAmnt = getItemCost() * getQuantity() * getDiscountPercent();
+        if (quantity >= getMinBulkAmount()) {
+            savedAmnt = itemCost * quantity * getDiscountPercent();
         }
 
         return savedAmnt;
@@ -44,34 +37,16 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     //Getters and Setters
-    @Override
-    public final void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
     public final void setMinBulkAmount(double minBulkAmount) {
         this.minBulkAmount = minBulkAmount;
-    }
-
-    @Override
-    public final void setItemCost(double itemCost) {
-        this.itemCost = itemCost;
     }
 
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
     }
 
-    public double getQuantity() {
-        return quantity;
-    }
-
     public double getMinBulkAmount() {
         return minBulkAmount;
-    }
-
-    public double getItemCost() {
-        return itemCost;
     }
 
     public double getDiscountPercent() {

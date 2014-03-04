@@ -28,8 +28,7 @@ public class LineItem {
         this.rss = rss;
     }
 
-    
-     //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
+    //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
     public void setItem(MerchandiseScannerStrategy mss, int arrayPosition) {
         getRss().getStoreProduct(mss, (arrayPosition));
         setItem(getRss().getProduct().getProductInfo() + " "
@@ -39,7 +38,6 @@ public class LineItem {
                 + new DecimalFormat("####.##").format(getRss().getProduct().getAdjustedTotal()));
 
         setTotal(getRss().getProduct().getAdjustedTotal());
-
     }
 
     public double getTotal() {

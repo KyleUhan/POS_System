@@ -12,22 +12,32 @@ package pos_system;
 public class Product {
 
     private DiscountStrategy discountStrategy;
-    private DiscountStrategy[] discountType = {new NoDiscount(),
-        new BuyInBulkDiscount(), new BuyTwoGetOneFreeDiscount(), new PercentDiscount()};
+    //private DiscountStrategy[] discountType
+          //  = {new NoDiscount(), new BuyInBulkDiscount(),
+            //    new BuyTwoGetOneFreeDiscount(), new PercentDiscount()};
+    private String productID;
     private String productInfo;
     private double productPrice;
 
     private double amountSaved;
     private double adjustedTotal;
 
+    public Product(String productID, String productInfo, double productPrice, DiscountStrategy discountStrategy) {
+        
+        setProductID(productID);
+        this.setProductInfo(productInfo);
+        this.setProductPrice(productPrice);
+        this.setDiscountStrategy(discountStrategy);
+    }
+
+    
+    
     public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
         double amntSaved;
         double newTotal;
         setDiscountStrategy(getDiscountType()[typeDiscount]);
-        getDiscountStrategy().setItemCost(productPrice);
-        getDiscountStrategy().setQuantity(mss.getMerchandiseQuantityArray()[arrayPos]);
-        amntSaved = getDiscountStrategy().getAmountSaved();
-        newTotal = getDiscountStrategy().getAdjustedTotal();
+        amntSaved = getDiscountStrategy().getAmountSaved(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
+        newTotal = getDiscountStrategy().getAdjustedTotalAfterDiscount(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
         setAmountSaved(amntSaved);
         setAdjustedTotal(newTotal);
 
@@ -50,7 +60,7 @@ public class Product {
     }
 
     public void setProductPrice(double productPrice) {
-        //getDiscountStrategy().getAdjustedTotal();
+        //getDiscountStrategy().getAdjustedTotalAfterDiscount();
         this.productPrice = productPrice;
     }
 
@@ -81,5 +91,15 @@ public class Product {
     public void setAdjustedTotal(double adjustedTotal) {
         this.adjustedTotal = adjustedTotal;
     }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+    
+    
 
 }

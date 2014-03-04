@@ -13,46 +13,27 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     private double itemCost;
 
     @Override
-    public double getAdjustedTotal() {
+    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
 
-        double adjustedTotal = (getItemCost() * getQuantity());
+        double adjustedTotal = (itemCost * quantity);
 
-        if (getQuantity() >= 3) {
-            adjustedTotal = (getItemCost() * getQuantity()) - getAmountSaved();
+        if (quantity >= 3) {
+            adjustedTotal = (itemCost * quantity) - getAmountSaved(itemCost, quantity);
         }
         return adjustedTotal;
     }
 
     @Override
-    public double getAmountSaved() {
+    public double getAmountSaved(double itemCost, double quantity) {
 
         double savedAmnt = 0;
 
-        if (getQuantity() >= MIN_NEEDED) {
+        if (quantity >= MIN_NEEDED) {
             int salesApplied;
-            salesApplied = (int) (getQuantity() / MIN_NEEDED);
-            savedAmnt = salesApplied * getItemCost();
+            salesApplied = (int) (quantity / MIN_NEEDED);
+            savedAmnt = salesApplied * itemCost;
         }
         return savedAmnt;
-    }
-
-    //Getters and Setters
-    @Override
-    public final void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public final void setItemCost(double itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public double getItemCost() {
-        return itemCost;
     }
 
 }

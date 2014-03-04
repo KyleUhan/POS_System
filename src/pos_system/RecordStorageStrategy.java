@@ -12,6 +12,8 @@ package pos_system;
 public interface RecordStorageStrategy {
 
     public abstract void getStoreProduct(MerchandiseScannerStrategy mss, int scannerPosition);
+    
+    public abstract Product getStoreProducts(MerchandiseScannerStrategy mss, int scannedPosition);
 
     public abstract double getProductPrice(int i);
 

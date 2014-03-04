@@ -6,12 +6,8 @@ package pos_system;
  */
 public interface DiscountStrategy {
 
-    public abstract double getAdjustedTotal();
+    public abstract double getAdjustedTotalAfterDiscount(double itemCost, double quantity);
 
-    public abstract double getAmountSaved();
-
-    public abstract void setQuantity(double quantity);
-
-    public abstract void setItemCost(double itemCost);
+    public abstract double getAmountSaved(double itemCost, double quantity);
 
 }

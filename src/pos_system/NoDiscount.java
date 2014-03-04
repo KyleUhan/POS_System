@@ -11,41 +11,19 @@ package pos_system;
  */
 public class NoDiscount implements DiscountStrategy {
 
-    private double quantity;
-    private double itemCost;
-
     @Override
-    public double getAdjustedTotal() {
+    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
 
-        return getItemCost();
+        return itemCost;
     }
 
     @Override
-    public double getAmountSaved() {
+    public double getAmountSaved(double itemCost, double quantity) {
 
         double savedAmnt = 0;
 
         return savedAmnt;
 
-    }
-
-    //Getters and Setters
-    @Override
-    public final void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public final void setItemCost(double itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public double getItemCost() {
-        return itemCost;
     }
 
 }

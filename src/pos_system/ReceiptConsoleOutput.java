@@ -9,7 +9,7 @@ import java.util.Date;
  *
  * @author Kyle
  */
-public class Receipt implements ReceiptStrategy {
+public class ReceiptConsoleOutput implements ReceiptStrategy {
 
     private String storeInfo = "Krohls Department Store";
     private LineItem[] eachLine;

@@ -23,7 +23,6 @@ public class Product {
     private double adjustedTotal;
 
     public Product(String productID, String productInfo, double productPrice, DiscountStrategy discountStrategy) {
-        
         setProductID(productID);
         setProductInfo(productInfo);
         setProductPrice(productPrice);
@@ -32,16 +31,16 @@ public class Product {
 
     
     
-    public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
-        double amntSaved;
-        double newTotal;
-        
-        amntSaved = getDiscountStrategy().getAmountSaved(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
-        newTotal = getDiscountStrategy().getAdjustedTotalAfterDiscount(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
-        setAmountSaved(amntSaved);
-        setAdjustedTotal(newTotal);
-
-    }
+//    public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
+//        double amntSaved;
+//        double newTotal;
+//        
+//        amntSaved = getDiscountStrategy().getAmountSaved(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
+//        newTotal = getDiscountStrategy().getAdjustedTotalAfterDiscount(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
+//        setAmountSaved(amntSaved);
+//        setAdjustedTotal(newTotal);
+//
+//    }
 
     public String getProductInfo() {
         return productInfo;

@@ -21,8 +21,6 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
 
         for (int i = 0; i < mss.getTotalAmountOfScannedProducts(); i++) {
             eachLine[i] = new LineItem(rss,mss, i);
-          //  eachLine[i].setRss(rss);
-     //       eachLine[i].setItem(mss, i);
         }
     }
 
@@ -34,17 +32,21 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("Store Receipt\n" + getStoreInfo() + "\n" + dateFormat.format(date)
-                + "\n------------------------------------------------------------------------------------");
-        System.out.println("ID  ----   Product   ----   Price  ----  Quantity  ---- "
-                + "Sale Amount  ----  Total\n"
-                + "------------------------------------------------------------------------------------");
+                + "\n----------------------------------------------------------------------------------------");
+        System.out.println("ID       \tProduct     \tPrice     \tQuantity     \t"
+                + "Sale Amount     Total\n"
+                + "----------------------------------------------------------------------------------------");
 
         populateReceipt(mss, rss);
         
         for (LineItem eachLine1 : eachLine) {
-            System.out.println("000-" + mss.getMerchandiseNumberArray()[i]
-                    + "      " + eachLine1.getProduct().getProductInfo());
-            overAllTotal += eachLine1.getTotal();
+            System.out.println(eachLine1.getProduct().getProductID()
+                    + "     \t" + eachLine1.getProduct().getProductInfo()
+                    + "     \t" + eachLine1.getProduct().getProductPrice()
+                    + "     \t" + mss.getMerchandiseQuantityArray()[i]
+                    + "     \t" + eachLine1.getAmountSaved(mss, i)
+                    + "     \t" + eachLine1.getAdjustedTotalAfterDiscount(mss, i));
+            overAllTotal += eachLine1.getAdjustedTotalAfterDiscount(mss, i);
             i++;
         }
         System.out.println("\nTOTAL: " + new DecimalFormat("##.##").format(overAllTotal));

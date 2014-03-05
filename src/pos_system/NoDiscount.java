@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pos_system;
 
 /**
@@ -12,18 +8,18 @@ package pos_system;
 public class NoDiscount implements DiscountStrategy {
 
     @Override
-    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
+    public double getAdjustedTotalAfterDiscount(final double itemCost,final double quantity) {
 
         return itemCost;
+
     }
 
     @Override
-    public double getAmountSaved(double itemCost, double quantity) {
+    public double getAmountSaved(final double itemCost,final double quantity) {
 
         double savedAmnt = 0;
 
         return savedAmnt;
 
     }
-
 }

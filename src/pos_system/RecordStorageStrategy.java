@@ -10,15 +10,11 @@ package pos_system;
  * @author Owner
  */
 public interface RecordStorageStrategy {
-
-    public abstract void getStoreProduct(MerchandiseScannerStrategy mss, int scannerPosition);
     
     public abstract Product locateStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition);
     
+    //public abstract double getProductPrice(int i);
 
-    public abstract double getProductPrice(int i);
-
-    public abstract Product getProduct();
 
     public abstract int getDBSize();
 

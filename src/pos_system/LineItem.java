@@ -1,7 +1,5 @@
 package pos_system;
 
-import java.text.DecimalFormat;
-
 /**
  *
  * @author Kyle
@@ -11,12 +9,19 @@ public class LineItem {
     private RecordStorageStrategy rss;
     private Product product;
     private String entireLineItem;
-    private double total;
+    private double subTotal;
 
     public LineItem(RecordStorageStrategy rss, MerchandiseScannerStrategy mss, int arrayPosition) {
         setRss(rss);
         product = locateProduct(mss, arrayPosition);
-    
+    }
+
+    public double getAdjustedTotalAfterDiscount(MerchandiseScannerStrategy mss, int arrayPosition) {
+        return getProduct().getDiscountStrategy().getAdjustedTotalAfterDiscount(getProduct().getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPosition]);
+    }
+
+    public double getAmountSaved(MerchandiseScannerStrategy mss, int arrayPosition) {
+        return getProduct().getDiscountStrategy().getAmountSaved(getProduct().getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPosition]);
     }
 
     public RecordStorageStrategy getRss() {
@@ -27,37 +32,25 @@ public class LineItem {
         return entireLineItem;
     }
 
-    public void setItem(String item) {
+    public void setItem(final String item) {
         this.entireLineItem = item;
     }
 
-    public void setRss(RecordStorageStrategy rss) {
+    public final void setRss(final RecordStorageStrategy rss) {
         this.rss = rss;
     }
 
-    public Product locateProduct(MerchandiseScannerStrategy mss, int arrayPosition) {
-        
+    private Product locateProduct(final MerchandiseScannerStrategy mss, final int arrayPosition) {
+
         return rss.locateStoreProduct(mss, arrayPosition);
     }
 
-    //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
-    public void setItem(MerchandiseScannerStrategy mss, int arrayPosition) {
-        getRss().getStoreProduct(mss, (arrayPosition));
-        setItem(getRss().getProduct().getProductInfo() + " "
-                + getRss().getProduct().getProductPrice() + "           "
-                + mss.getMerchandiseQuantityArray()[arrayPosition] + "           "
-                + new DecimalFormat("####.##").format(getRss().getProduct().getAmountSaved()) + "          "
-                + new DecimalFormat("####.##").format(getRss().getProduct().getAdjustedTotal()));
-
-        setTotal(getRss().getProduct().getAdjustedTotal());
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+    public void setSubTotal(final double subTotal) {
+        this.subTotal = subTotal;
     }
 
     public Product getProduct() {
@@ -67,7 +60,4 @@ public class LineItem {
     public void setProduct(Product product) {
         this.product = product;
     }
-    
-    
-
 }

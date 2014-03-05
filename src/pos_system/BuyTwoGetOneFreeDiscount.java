@@ -1,7 +1,5 @@
 package pos_system;
 
-import java.text.DecimalFormat;
-
 /**
  *
  * @author Kyle
@@ -9,11 +7,9 @@ import java.text.DecimalFormat;
 public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
 
     private final double MIN_NEEDED = 3;
-    private double quantity;
-    private double itemCost;
 
     @Override
-    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
+    public double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
 
         double adjustedTotal = (itemCost * quantity);
 
@@ -24,7 +20,7 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAmountSaved(double itemCost, double quantity) {
+    public double getAmountSaved(final double itemCost, final double quantity) {
 
         double savedAmnt = 0;
 
@@ -35,5 +31,4 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
         }
         return savedAmnt;
     }
-
 }

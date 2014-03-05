@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
 
 /**
@@ -12,32 +7,13 @@ package pos_system;
 public class RealDatabaseRetrieval implements RecordStorageStrategy {
 
     @Override
-    public void getStoreProduct(MerchandiseScannerStrategy mss, int scannerArrayPosition) {
-        System.out.println("Unable to Access DB at this time");
-
-    }
-    
-    @Override
-    public Product locateStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition){
+    public Product locateStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition) {
+        System.out.println("Unable to Access DB at this time - DB not configured.");
         return null;
     }
 
-    @Override
-    public final double getProductPrice(int merchandiseNumber) {
-        return 0;
-    }
-
-    ;
-    
-    public Product getProduct() {
-        return null;
-    }
-
-    ;
-    
     @Override
     public int getDBSize() {
         return 0;
     }
-;
 }

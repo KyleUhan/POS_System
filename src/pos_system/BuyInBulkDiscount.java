@@ -1,6 +1,4 @@
-
 package pos_system;
-
 
 /**
  *
@@ -11,8 +9,16 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     private double discountPercent = .1;
     private double minBulkAmount = 5;
 
+    public BuyInBulkDiscount() {
+    }
+
+    public BuyInBulkDiscount(final double discountPercent, final double minBulkAmount) {
+        setDiscountPercent(discountPercent);
+        setMinBulkAmount(minBulkAmount);
+    }
+
     @Override
-    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
+    public double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
 
         double adjustedTotal = (itemCost * quantity);
 
@@ -24,7 +30,7 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAmountSaved(double itemCost, double quantity) {
+    public double getAmountSaved(final double itemCost,final double quantity) {
 
         double savedAmnt = 0;
 
@@ -37,11 +43,11 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     //Getters and Setters
-    public final void setMinBulkAmount(double minBulkAmount) {
+    public final void setMinBulkAmount(final double minBulkAmount) {
         this.minBulkAmount = minBulkAmount;
     }
 
-    public void setDiscountPercent(double discountPercent) {
+    public final void setDiscountPercent(final double discountPercent) {
         this.discountPercent = discountPercent;
     }
 
@@ -52,5 +58,4 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     public double getDiscountPercent() {
         return discountPercent;
     }
-
 }

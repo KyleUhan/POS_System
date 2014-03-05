@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
-
-import java.text.DecimalFormat;
 
 /**
  *
@@ -14,19 +7,25 @@ import java.text.DecimalFormat;
 public class PercentDiscount implements DiscountStrategy {
 
     private final int CONVER_TO_PERCENT = 100;
-    private double percentAmount;
+    private double percentAmount = .2;
+
+    public PercentDiscount() {
+    }
+
+    public PercentDiscount(final double percentAmount) {
+        setPercentAmount(percentAmount);
+    }
 
     @Override
-    public double getAdjustedTotalAfterDiscount(double itemCost, double quantity) {
+    public double getAdjustedTotalAfterDiscount(final double itemCost,final double quantity) {
 
         double adjustedTotal = (itemCost * quantity) - getAmountSaved(itemCost, quantity);
 
         return adjustedTotal;
     }
 
-    //ADDRESS MAGIC NUMBER
     @Override
-    public double getAmountSaved(double itemCost, double quantity) {
+    public double getAmountSaved(final double itemCost,final double quantity) {
 
         double savedAmnt = itemCost * quantity * getPercentAmount();
 
@@ -34,12 +33,11 @@ public class PercentDiscount implements DiscountStrategy {
     }
 
     //Getters and Setters
-    public final void setPercentAmount(double percentAmount) {
+    public final void setPercentAmount(final double percentAmount) {
         this.percentAmount = percentAmount / CONVER_TO_PERCENT;
     }
 
     public double getPercentAmount() {
         return percentAmount;
     }
-
 }

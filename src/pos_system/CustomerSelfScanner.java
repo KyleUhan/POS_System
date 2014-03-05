@@ -10,7 +10,6 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
 
     private final int EXIT_VAL = 999;
     private final String ERROR = "Item ID Number must not exceed 18";
-
     private int[] merchandiseNumberArray;
     private double[] merchandiseQuantityArray;
 
@@ -28,7 +27,6 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         validateEntry(merchandiseNumberArray[count]);
         System.out.println("Enter quantity: ");
         merchandiseQuantityArray[count] = input.nextDouble();
-
         while (merchandiseNumberArray[count] != EXIT_VAL && merchandiseQuantityArray[count] != EXIT_VAL) {
             count++;
             System.out.println("Enter item number(simulate scan id) " + (count + 1) + ":");
@@ -49,13 +47,6 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
 
         System.out.println("\nScan Complete...\n");
 
-    }
-
-    //for testing purposes
-    public void showArray() {
-        for (int i = 0; i < merchandiseNumberArray.length; i++) {
-            System.out.println(merchandiseNumberArray[i] + " | " + merchandiseQuantityArray[i]);
-        }
     }
 
     //Allows for dynamic array expansion
@@ -97,5 +88,4 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         }
         return e;
     }
-
 }

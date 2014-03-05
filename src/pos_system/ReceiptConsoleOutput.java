@@ -14,16 +14,15 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
     private String storeInfo = "Krohls Department Store";
     private LineItem[] eachLine;
 
- 
     
     @Override
     public void populateReceipt(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
         eachLine = new LineItem[mss.getTotalAmountOfScannedProducts()];
 
         for (int i = 0; i < mss.getTotalAmountOfScannedProducts(); i++) {
-            eachLine[i] = new LineItem();
-            eachLine[i].setRss(rss);
-            eachLine[i].setItem(mss, i);
+            eachLine[i] = new LineItem(rss,mss, i);
+          //  eachLine[i].setRss(rss);
+     //       eachLine[i].setItem(mss, i);
         }
     }
 
@@ -44,7 +43,7 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
         
         for (LineItem eachLine1 : eachLine) {
             System.out.println("000-" + mss.getMerchandiseNumberArray()[i]
-                    + "      " + eachLine1.getItem());
+                    + "      " + eachLine1.getProduct().getProductInfo());
             overAllTotal += eachLine1.getTotal();
             i++;
         }

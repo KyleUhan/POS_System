@@ -9,8 +9,15 @@ import java.text.DecimalFormat;
 public class LineItem {
 
     private RecordStorageStrategy rss;
+    private Product product;
     private String entireLineItem;
     private double total;
+
+    public LineItem(RecordStorageStrategy rss, MerchandiseScannerStrategy mss, int arrayPosition) {
+        setRss(rss);
+        product = locateProduct(mss, arrayPosition);
+    
+    }
 
     public RecordStorageStrategy getRss() {
         return rss;
@@ -26,6 +33,11 @@ public class LineItem {
 
     public void setRss(RecordStorageStrategy rss) {
         this.rss = rss;
+    }
+
+    public Product locateProduct(MerchandiseScannerStrategy mss, int arrayPosition) {
+        
+        return rss.locateStoreProduct(mss, arrayPosition);
     }
 
     //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
@@ -47,5 +59,15 @@ public class LineItem {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
+    
 
 }

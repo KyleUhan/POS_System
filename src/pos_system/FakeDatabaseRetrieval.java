@@ -52,8 +52,13 @@ public class FakeDatabaseRetrieval implements RecordStorageStrategy {
 
     }
     
+    public Product locateProduct(MerchandiseScannerStrategy mss, int arrayPosition){
+        return products[mss.getMerchandiseNumberArray()[4]];
+    };
+    
+    
     @Override
-    public Product getStoreProducts(MerchandiseScannerStrategy mss, int scannedPosition){
+    public Product locateStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition){
         return this.getProducts()[mss.getMerchandiseNumberArray()[scannedPosition]];
     }
 
@@ -99,7 +104,7 @@ public class FakeDatabaseRetrieval implements RecordStorageStrategy {
     public static void main(String[] args) {
         MerchandiseScannerStrategy mss = new CustomerSelfScanner();
         FakeDatabaseRetrieval fd = new FakeDatabaseRetrieval();
-        fd.getStoreProducts(mss, 2)
+ 
     }
  
 

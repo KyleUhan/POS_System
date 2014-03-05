@@ -5,16 +5,12 @@ package pos_system;
  * @author Kyle
  */
 public class Register {
-
-    private final String ACTIVATED_REGISTER = "Register activated\n";
-
     //Output strategy
     private ReceiptStrategy receipt;
     //Input strategy
     private MerchandiseScannerStrategy merchandiseScanner;
 
     public Register() {
-        System.out.println(ACTIVATED_REGISTER);
     }
 
     public final void startNewSale(final MerchandiseScannerStrategy mss, final ReceiptStrategy rs, RecordStorageStrategy rss) {

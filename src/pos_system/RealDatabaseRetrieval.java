@@ -18,7 +18,7 @@ public class RealDatabaseRetrieval implements RecordStorageStrategy {
     }
     
     @Override
-    public Product getStoreProducts(MerchandiseScannerStrategy mss, int scannedPosition){
+    public Product locateStoreProduct(MerchandiseScannerStrategy mss, int scannedPosition){
         return null;
     }
 
@@ -30,7 +30,7 @@ public class RealDatabaseRetrieval implements RecordStorageStrategy {
     ;
     
     public Product getProduct() {
-        return new Product();
+        return null;
     }
 
     ;

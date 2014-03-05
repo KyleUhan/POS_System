@@ -25,9 +25,9 @@ public class Product {
     public Product(String productID, String productInfo, double productPrice, DiscountStrategy discountStrategy) {
         
         setProductID(productID);
-        this.setProductInfo(productInfo);
-        this.setProductPrice(productPrice);
-        this.setDiscountStrategy(discountStrategy);
+        setProductInfo(productInfo);
+        setProductPrice(productPrice);
+        setDiscountStrategy(discountStrategy);
     }
 
     
@@ -35,7 +35,7 @@ public class Product {
     public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
         double amntSaved;
         double newTotal;
-        setDiscountStrategy(getDiscountType()[typeDiscount]);
+        
         amntSaved = getDiscountStrategy().getAmountSaved(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
         newTotal = getDiscountStrategy().getAdjustedTotalAfterDiscount(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
         setAmountSaved(amntSaved);
@@ -68,13 +68,13 @@ public class Product {
         this.discountStrategy = discountStrategy;
     }
 
-    public DiscountStrategy[] getDiscountType() {
-        return discountType;
-    }
-
-    public void setDiscountType(DiscountStrategy[] discountType) {
-        this.discountType = discountType;
-    }
+//    public DiscountStrategy[] getDiscountType() {
+//        return discountType;
+//    }
+//
+//    public void setDiscountType(DiscountStrategy[] discountType) {
+//        this.discountType = discountType;
+//    }
 
     public double getAmountSaved() {
         return amountSaved;

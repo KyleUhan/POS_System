@@ -11,28 +11,28 @@ public class LineItem {
     private String entireLineItem;
     private double subTotal;
 
-    public LineItem(RecordStorageStrategy rss, MerchandiseScannerStrategy mss, int arrayPosition) {
+    public LineItem(final RecordStorageStrategy rss, final MerchandiseScannerStrategy mss, final int arrayPosition) {
         setRss(rss);
-        product = locateProduct(mss, arrayPosition);
+        setProduct(locateProduct(mss, arrayPosition));
     }
 
-    public double getAdjustedTotalAfterDiscount(MerchandiseScannerStrategy mss, int arrayPosition) {
+    public final double getAdjustedTotalAfterDiscount(final MerchandiseScannerStrategy mss, final int arrayPosition) {
         return getProduct().getDiscountStrategy().getAdjustedTotalAfterDiscount(getProduct().getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPosition]);
     }
 
-    public double getAmountSaved(MerchandiseScannerStrategy mss, int arrayPosition) {
+    public final double getAmountSaved(final MerchandiseScannerStrategy mss, final int arrayPosition) {
         return getProduct().getDiscountStrategy().getAmountSaved(getProduct().getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPosition]);
     }
 
-    public RecordStorageStrategy getRss() {
+    public final RecordStorageStrategy getRss() {
         return rss;
     }
 
-    public String getItem() {
+    public final String getItem() {
         return entireLineItem;
     }
 
-    public void setItem(final String item) {
+    public final void setItem(final String item) {
         this.entireLineItem = item;
     }
 
@@ -45,19 +45,19 @@ public class LineItem {
         return rss.locateStoreProduct(mss, arrayPosition);
     }
 
-    public double getSubTotal() {
+    public final double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(final double subTotal) {
+    public final void setSubTotal(final double subTotal) {
         this.subTotal = subTotal;
     }
 
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(final Product product) {
         this.product = product;
     }
 }

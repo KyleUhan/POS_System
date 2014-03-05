@@ -6,6 +6,7 @@ package pos_system;
  */
 public class BuyInBulkDiscount implements DiscountStrategy {
 
+    private final int CONVER_TO_PERCENT = 100;
     private double discountPercent = .1;
     private double minBulkAmount = 5;
 
@@ -18,7 +19,7 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
+    public final double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
 
         double adjustedTotal = (itemCost * quantity);
 
@@ -30,7 +31,7 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAmountSaved(final double itemCost,final double quantity) {
+    public final double getAmountSaved(final double itemCost, final double quantity) {
 
         double savedAmnt = 0;
 
@@ -48,14 +49,14 @@ public class BuyInBulkDiscount implements DiscountStrategy {
     }
 
     public final void setDiscountPercent(final double discountPercent) {
-        this.discountPercent = discountPercent;
+        this.discountPercent = discountPercent / CONVER_TO_PERCENT;
     }
 
-    public double getMinBulkAmount() {
+    public final double getMinBulkAmount() {
         return minBulkAmount;
     }
 
-    public double getDiscountPercent() {
+    public final double getDiscountPercent() {
         return discountPercent;
     }
 }

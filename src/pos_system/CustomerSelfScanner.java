@@ -14,7 +14,7 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
     private double[] merchandiseQuantityArray;
 
     @Override
-    public void scanItem() {
+    public final void scanItem() {
         int merchNumber;
         double Qtny;
         merchandiseNumberArray = new int[1];
@@ -66,21 +66,22 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
     }
 
     @Override
-    public int[] getMerchandiseNumberArray() {
+    public final int[] getMerchandiseNumberArray() {
         return merchandiseNumberArray;
     }
 
     @Override
-    public double[] getMerchandiseQuantityArray() {
+    public final double[] getMerchandiseQuantityArray() {
         return merchandiseQuantityArray;
     }
 
     @Override
-    public int getTotalAmountOfScannedProducts() {
+    public final int getTotalAmountOfScannedProducts() {
         return merchandiseNumberArray.length;
     }
 
     private int validateEntry(int e) {
+
         if (e != EXIT_VAL) {
             if (e > 18 || e < 0) {
                 throw new IllegalArgumentException(ERROR);

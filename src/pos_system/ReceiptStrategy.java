@@ -14,7 +14,4 @@ public interface ReceiptStrategy {
     public abstract void showReceiptForItems(MerchandiseScannerStrategy mss, RecordStorageStrategy rss);
 
     public abstract void populateReceipt(MerchandiseScannerStrategy mss, RecordStorageStrategy rss);
-    
-    ;
-
 }

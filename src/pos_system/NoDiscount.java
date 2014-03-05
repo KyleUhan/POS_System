@@ -1,4 +1,3 @@
-
 package pos_system;
 
 /**
@@ -8,14 +7,14 @@ package pos_system;
 public class NoDiscount implements DiscountStrategy {
 
     @Override
-    public double getAdjustedTotalAfterDiscount(final double itemCost,final double quantity) {
+    public final double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
 
         return itemCost;
 
     }
 
     @Override
-    public double getAmountSaved(final double itemCost,final double quantity) {
+    public final double getAmountSaved(final double itemCost, final double quantity) {
 
         double savedAmnt = 0;
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos_system;
 
 /**
@@ -12,15 +7,9 @@ package pos_system;
 public class Product {
 
     private DiscountStrategy discountStrategy;
-    //private DiscountStrategy[] discountType
-          //  = {new NoDiscount(), new BuyInBulkDiscount(),
-            //    new BuyTwoGetOneFreeDiscount(), new PercentDiscount()};
     private String productID;
     private String productInfo;
     private double productPrice;
-
-    private double amountSaved;
-    private double adjustedTotal;
 
     public Product(String productID, String productInfo, double productPrice, DiscountStrategy discountStrategy) {
         setProductID(productID);
@@ -29,76 +18,36 @@ public class Product {
         setDiscountStrategy(discountStrategy);
     }
 
-    
-    
-//    public void applyDiscount(int typeDiscount, MerchandiseScannerStrategy mss, int arrayPos) {
-//        double amntSaved;
-//        double newTotal;
-//        
-//        amntSaved = getDiscountStrategy().getAmountSaved(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
-//        newTotal = getDiscountStrategy().getAdjustedTotalAfterDiscount(getProductPrice(), mss.getMerchandiseQuantityArray()[arrayPos]);
-//        setAmountSaved(amntSaved);
-//        setAdjustedTotal(newTotal);
-//
-//    }
-
-    public String getProductInfo() {
+    //Getters and Setters
+    public final String getProductInfo() {
         return productInfo;
     }
 
-    public double getProductPrice() {
+    public final double getProductPrice() {
         return productPrice;
     }
 
-    public DiscountStrategy getDiscountStrategy() {
+    public final DiscountStrategy getDiscountStrategy() {
         return discountStrategy;
     }
 
-    public void setProductInfo(String productInfo) {
+    public final void setProductInfo(final String productInfo) {
         this.productInfo = productInfo;
     }
 
-    public void setProductPrice(double productPrice) {
-        //getDiscountStrategy().getAdjustedTotalAfterDiscount();
+    public final void setProductPrice(final double productPrice) {
         this.productPrice = productPrice;
     }
 
-    public void setDiscountStrategy(DiscountStrategy discountStrategy) {
+    public final void setDiscountStrategy(final DiscountStrategy discountStrategy) {
         this.discountStrategy = discountStrategy;
     }
 
-//    public DiscountStrategy[] getDiscountType() {
-//        return discountType;
-//    }
-//
-//    public void setDiscountType(DiscountStrategy[] discountType) {
-//        this.discountType = discountType;
-//    }
-
-    public double getAmountSaved() {
-        return amountSaved;
-    }
-
-    public void setAmountSaved(double amountSaved) {
-        this.amountSaved = amountSaved;
-    }
-
-    public double getAdjustedTotal() {
-        return adjustedTotal;
-    }
-
-    public void setAdjustedTotal(double adjustedTotal) {
-        this.adjustedTotal = adjustedTotal;
-    }
-
-    public String getProductID() {
+    public final String getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public final void setProductID(final String productID) {
         this.productID = productID;
     }
-    
-    
-
 }

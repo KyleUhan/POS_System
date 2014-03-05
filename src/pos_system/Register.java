@@ -5,9 +5,9 @@ package pos_system;
  * @author Kyle
  */
 public class Register {
-    //Output strategy
+    //Output and Input
+
     private ReceiptStrategy receipt;
-    //Input strategy
     private MerchandiseScannerStrategy merchandiseScanner;
 
     public Register() {
@@ -21,25 +21,24 @@ public class Register {
     }
 
     //Pass scanned item values to Output Strategy
-    public final void completeTransaction(RecordStorageStrategy rss) {
+    public final void completeTransaction(final RecordStorageStrategy rss) {
         getReceipt().showReceiptForItems(getMerchandiseScanner(), rss);
     }
 
     //Getters and Setters
-    public void setReceipt(final ReceiptStrategy receipt) {
+    public final void setReceipt(final ReceiptStrategy receipt) {
         this.receipt = receipt;
     }
 
-    public void setMerchandiseScanner(final MerchandiseScannerStrategy merchandiseScanner) {
+    public final void setMerchandiseScanner(final MerchandiseScannerStrategy merchandiseScanner) {
         this.merchandiseScanner = merchandiseScanner;
     }
 
-    public ReceiptStrategy getReceipt() {
+    public final ReceiptStrategy getReceipt() {
         return receipt;
     }
 
-    public MerchandiseScannerStrategy getMerchandiseScanner() {
+    public final MerchandiseScannerStrategy getMerchandiseScanner() {
         return merchandiseScanner;
     }
-
 }

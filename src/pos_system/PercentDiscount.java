@@ -17,7 +17,7 @@ public class PercentDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAdjustedTotalAfterDiscount(final double itemCost,final double quantity) {
+    public final double getAdjustedTotalAfterDiscount(final double itemCost,final double quantity) {
 
         double adjustedTotal = (itemCost * quantity) - getAmountSaved(itemCost, quantity);
 
@@ -25,7 +25,7 @@ public class PercentDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAmountSaved(final double itemCost,final double quantity) {
+    public final double getAmountSaved(final double itemCost,final double quantity) {
 
         double savedAmnt = itemCost * quantity * getPercentAmount();
 
@@ -37,7 +37,7 @@ public class PercentDiscount implements DiscountStrategy {
         this.percentAmount = percentAmount / CONVER_TO_PERCENT;
     }
 
-    public double getPercentAmount() {
+    public final double getPercentAmount() {
         return percentAmount;
     }
 }

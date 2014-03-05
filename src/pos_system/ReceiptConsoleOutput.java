@@ -14,21 +14,21 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
     private String storeInfo = "Krohls Department Store";
     private LineItem[] eachLine;
 
-    
     @Override
-    public void populateReceipt(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
+    public final void populateReceipt(final MerchandiseScannerStrategy mss, final RecordStorageStrategy rss) {
         eachLine = new LineItem[mss.getTotalAmountOfScannedProducts()];
 
         for (int i = 0; i < mss.getTotalAmountOfScannedProducts(); i++) {
-            eachLine[i] = new LineItem(rss,mss, i);
+            eachLine[i] = new LineItem(rss, mss, i);
         }
     }
 
+    //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
     @Override
-    public void showReceiptForItems(MerchandiseScannerStrategy mss, RecordStorageStrategy rss) {
+    public final void showReceiptForItems(final MerchandiseScannerStrategy mss, final RecordStorageStrategy rss) {
         double overAllTotal = 0;
         int i = 0;
-        //***TO DO - SET ALL FORMATTING IN A FORMAT STRATEGY***
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("Store Receipt\n" + getStoreInfo() + "\n" + dateFormat.format(date)
@@ -38,7 +38,7 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
                 + "----------------------------------------------------------------------------------------");
 
         populateReceipt(mss, rss);
-        
+
         for (LineItem eachLine1 : eachLine) {
             System.out.println(eachLine1.getProduct().getProductID()
                     + "     \t" + eachLine1.getProduct().getProductInfo()
@@ -54,24 +54,23 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
     }
 
     //Getters and Setters
-    public void setStoreInfo(final String storeInfo) {
+    public final void setStoreInfo(final String storeInfo) {
         this.storeInfo = storeInfo;
     }
 
-    public LineItem[] getLineItem() {
+    public final LineItem[] getLineItem() {
         return eachLine;
     }
 
-    public void setEachLine(final LineItem[] eachLine) {
+    public final void setEachLine(final LineItem[] eachLine) {
         this.eachLine = eachLine;
     }
 
-    public String getStoreInfo() {
+    public final String getStoreInfo() {
         return storeInfo;
     }
 
-    public LineItem[] getEachLine() {
+    public final LineItem[] getEachLine() {
         return eachLine;
     }
-
 }

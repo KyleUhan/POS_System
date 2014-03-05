@@ -9,7 +9,7 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     private final double MIN_NEEDED = 3;
 
     @Override
-    public double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
+    public final double getAdjustedTotalAfterDiscount(final double itemCost, final double quantity) {
 
         double adjustedTotal = (itemCost * quantity);
 
@@ -20,7 +20,7 @@ public class BuyTwoGetOneFreeDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getAmountSaved(final double itemCost, final double quantity) {
+    public final double getAmountSaved(final double itemCost, final double quantity) {
 
         double savedAmnt = 0;
 

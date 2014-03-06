@@ -9,12 +9,14 @@ import java.util.Scanner;
 public class CustomerSelfScanner implements MerchandiseScannerStrategy {
 
     private final int EXIT_VAL = 999;
+    ValidationStrategy validationStrategy;
     private final String ERROR = "Item ID Number must not exceed 18";
     private int[] merchandiseNumberArray;
     private double[] merchandiseQuantityArray;
 
     @Override
     public final void scanItem() {
+        validationStrategy = new ValidateRange(0,18);
         int merchNumber;
         double Qtny;
         merchandiseNumberArray = new int[1];
@@ -24,14 +26,14 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         int count = 0;
         System.out.println("Enter item number ID(simulate scan id) " + (count + 1) + ":");
         merchandiseNumberArray[count] = input.nextInt();
-        validateEntry(merchandiseNumberArray[count]);
+        checkForCompletedTransaction(merchandiseNumberArray[count]);
         System.out.println("Enter quantity: ");
         merchandiseQuantityArray[count] = input.nextDouble();
         while (merchandiseNumberArray[count] != EXIT_VAL && merchandiseQuantityArray[count] != EXIT_VAL) {
             count++;
-            System.out.println("Enter item number(simulate scan id) " + (count + 1) + ":");
+            System.out.println("Enter item number ID(simulate scan id) " + (count + 1) + ":");
             merchNumber = input.nextInt();
-            validateEntry(merchNumber);
+            checkForCompletedTransaction(merchNumber);
             System.out.println("Enter quantity: ");
             Qtny = input.nextDouble();
 
@@ -80,12 +82,10 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         return merchandiseNumberArray.length;
     }
 
-    private int validateEntry(int e) {
-
+    private int checkForCompletedTransaction(int e) {
+        
         if (e != EXIT_VAL) {
-            if (e > 18 || e < 0) {
-                throw new IllegalArgumentException(ERROR);
-            }
+            e = validationStrategy.validateEntry(e);
         }
         return e;
     }

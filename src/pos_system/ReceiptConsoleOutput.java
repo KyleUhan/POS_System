@@ -12,6 +12,7 @@ import java.util.Date;
 public class ReceiptConsoleOutput implements ReceiptStrategy {
 
     private String storeInfo = "Krohls Department Store";
+    private static final double SALES_TAX = 5.5;
     private LineItem[] eachLine;
 
     @Override
@@ -49,7 +50,10 @@ public class ReceiptConsoleOutput implements ReceiptStrategy {
             overAllTotal += eachLine1.getAdjustedTotalAfterDiscount(mss, i);
             i++;
         }
-        System.out.println("\nTOTAL: " + new DecimalFormat("##.##").format(overAllTotal));
+        System.out.println("\nTOTAL: \t\t$" + new DecimalFormat("##.##").format(overAllTotal));
+        System.out.println("Sales tax: \t" + SALES_TAX);
+        double grandTotal = overAllTotal * (SALES_TAX/100);
+        System.out.println("FINAL TOTAL: \t$" + new DecimalFormat("##.##").format(overAllTotal + grandTotal));
 
     }
 

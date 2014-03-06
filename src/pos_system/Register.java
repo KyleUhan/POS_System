@@ -15,7 +15,7 @@ public class Register {
 
     public final void startNewSale(final MerchandiseScannerStrategy mss, final ReceiptStrategy rs, RecordStorageStrategy rss) {
         setMerchandiseScanner(mss);
-        getMerchandiseScanner().scanItem();
+        getMerchandiseScanner().scanItem(rss);
         setReceipt(rs);
         completeTransaction(rss);
     }

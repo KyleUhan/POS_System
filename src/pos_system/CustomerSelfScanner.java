@@ -9,14 +9,13 @@ import java.util.Scanner;
 public class CustomerSelfScanner implements MerchandiseScannerStrategy {
 
     private final int EXIT_VAL = 999;
-    ValidationStrategy validationStrategy;
-    private final String ERROR = "Item ID Number must not exceed 18";
     private int[] merchandiseNumberArray;
     private double[] merchandiseQuantityArray;
 
     @Override
-    public final void scanItem() {
-        validationStrategy = new ValidateRange(0,18);
+    public final void scanItem(final RecordStorageStrategy rss) {
+        ValidationStrategy vs1 = new ValidateRange(0, rss.getDBSize() - 1);
+        ValidationStrategy vs2 = new ValidateRange(0.1, 999.0);
         int merchNumber;
         double Qtny;
         merchandiseNumberArray = new int[1];
@@ -26,17 +25,19 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         int count = 0;
         System.out.println("Enter item number ID(simulate scan id) " + (count + 1) + ":");
         merchandiseNumberArray[count] = input.nextInt();
-        checkForCompletedTransaction(merchandiseNumberArray[count]);
+        checkForCompletedTransaction(merchandiseNumberArray[count], vs1);
         System.out.println("Enter quantity: ");
         merchandiseQuantityArray[count] = input.nextDouble();
+        checkForCompletedTransaction(merchandiseQuantityArray[count], vs2);
+
         while (merchandiseNumberArray[count] != EXIT_VAL && merchandiseQuantityArray[count] != EXIT_VAL) {
             count++;
             System.out.println("Enter item number ID(simulate scan id) " + (count + 1) + ":");
             merchNumber = input.nextInt();
-            checkForCompletedTransaction(merchNumber);
+            checkForCompletedTransaction(merchNumber, vs1);
             System.out.println("Enter quantity: ");
             Qtny = input.nextDouble();
-
+            checkForCompletedTransaction(Qtny, vs2);
             if (merchNumber == EXIT_VAL || Qtny == EXIT_VAL) {
                 break;
             }
@@ -82,10 +83,20 @@ public class CustomerSelfScanner implements MerchandiseScannerStrategy {
         return merchandiseNumberArray.length;
     }
 
-    private int checkForCompletedTransaction(int e) {
-        
+    //To ensure exit command is not the value to validate
+    private int checkForCompletedTransaction(int e, ValidationStrategy vs) {
+
         if (e != EXIT_VAL) {
-            e = validationStrategy.validateEntry(e);
+            e = vs.validateEntry(e);
+        }
+        return e;
+    }
+
+    //To ensure exit command is not the value to validate
+    private double checkForCompletedTransaction(double e, ValidationStrategy vs) {
+
+        if (e != EXIT_VAL) {
+            e = vs.validateEntry(e);
         }
         return e;
     }

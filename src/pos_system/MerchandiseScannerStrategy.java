@@ -6,7 +6,7 @@ package pos_system;
  */
 public interface MerchandiseScannerStrategy {
 
-    public abstract void scanItem();
+    public abstract void scanItem(RecordStorageStrategy rss);
 
     public abstract int[] getMerchandiseNumberArray();
 

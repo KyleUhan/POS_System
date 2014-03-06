@@ -1,4 +1,3 @@
-
 package pos_system;
 
 /**
@@ -11,10 +10,8 @@ public class ValidateRange implements ValidationStrategy {
     private static final String OUT_OF_RANGE = "Value it out of allowed range";
     private double minDouble;
     private double maxDouble;
-
     private int minInt;
     private int maxInt;
-
     private char minChar;
     private char maxChar;
 
@@ -37,7 +34,7 @@ public class ValidateRange implements ValidationStrategy {
         }
     }
 
-    public ValidateRange(char minChar, char maxChar) {
+    public ValidateRange(final char minChar, final char maxChar) {
         if (minChar > maxChar) {
             throw new IllegalArgumentException(FORMAT_ERROR);
         } else {
@@ -46,7 +43,8 @@ public class ValidateRange implements ValidationStrategy {
         }
     }
 
-    public int validateEntry(int numberToValidate) {
+    @Override
+    public final int validateEntry(final int numberToValidate) {
         if (numberToValidate < getMinInt() || numberToValidate > getMaxInt()) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
         } else {
@@ -54,7 +52,8 @@ public class ValidateRange implements ValidationStrategy {
         }
     }
 
-    public double validateEntry(double numberToValidate) {
+    @Override
+    public final double validateEntry(final double numberToValidate) {
         if (numberToValidate < getMinDouble() || numberToValidate > getMaxDouble()) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
         } else {
@@ -62,74 +61,71 @@ public class ValidateRange implements ValidationStrategy {
         }
     }
 
-    public char validateEntry(char charToValidate) {
+    @Override
+    public final char validateEntry(final char charToValidate) {
         if (charToValidate < getMinChar() || charToValidate > getMaxChar()) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
         } else {
             return charToValidate;
         }
     }
-    
-    public final String validateEntry(String stringToValidate){
-        //working on string validation types
-        return stringToValidate;
+
+    @Override
+    public final String validateEntry(final String stringToValidate) {
+        if (stringToValidate.length() < getMinInt() || stringToValidate.length() > getMaxInt()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE);
+        } else {
+            return stringToValidate;
+        }
+
     }
 
-    public double getMinDouble() {
+    //Getters and Setters
+    public final double getMinDouble() {
         return minDouble;
     }
 
-    public void setMinDouble(double minDouble) {
+    public final void setMinDouble(final double minDouble) {
         this.minDouble = minDouble;
     }
 
-    public double getMaxDouble() {
+    public final double getMaxDouble() {
         return maxDouble;
     }
 
-    public void setMaxDouble(double maxDouble) {
+    public final void setMaxDouble(final double maxDouble) {
         this.maxDouble = maxDouble;
     }
 
-    public int getMinInt() {
+    public final int getMinInt() {
         return minInt;
     }
 
-    public void setMinInt(int minInt) {
+    public final void setMinInt(final int minInt) {
         this.minInt = minInt;
     }
 
-    public int getMaxInt() {
+    public final int getMaxInt() {
         return maxInt;
     }
 
-    public void setMaxInt(int maxInt) {
+    public final void setMaxInt(final int maxInt) {
         this.maxInt = maxInt;
     }
 
-    public char getMinChar() {
+    public final char getMinChar() {
         return minChar;
     }
 
-    public void setMinChar(char minChar) {
+    public final void setMinChar(final char minChar) {
         this.minChar = minChar;
     }
 
-    public char getMaxChar() {
+    public final char getMaxChar() {
         return maxChar;
     }
 
-    public void setMaxChar(char maxChar) {
+    public final void setMaxChar(final char maxChar) {
         this.maxChar = maxChar;
     }
-
-    public static void main(String[] args) {
-        ValidationStrategy vs;
-        vs = new ValidateRange(1,10);
-        vs.validateEntry(7);
-        System.out.println("build 1 successful");
-        vs.validateEntry(12);
-
-    }
-
 }
